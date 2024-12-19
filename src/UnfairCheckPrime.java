@@ -4,9 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class UnfairCheckPrime {
 
-    private static final int MAX_INT = 100000000;
+    private static final int MAX_INT = 1_000_000_000;
     private static final int CONCURRENCY = 10;
-    private static AtomicInteger totalPrimeNumbers = new AtomicInteger(0);
+    private static final AtomicInteger totalPrimeNumbers = new AtomicInteger(0);
 
     private static void checkPrime(int x) {
         if ((x & 1) == 0) {
