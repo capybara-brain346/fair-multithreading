@@ -1,5 +1,3 @@
-package org.piyush.checkprime;
-
 public class CheckPrime {
 
     public int maxInt = 1000000;
