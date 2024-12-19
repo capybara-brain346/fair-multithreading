@@ -1,4 +1,4 @@
-package checkprime;
+package org.piyush.checkprime;
 
 public class CheckPrime {
 
