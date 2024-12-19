@@ -27,7 +27,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = null;
+        ServerSocket serverSocket = new ServerSocket(8080);
 
         try {
             Socket client = serverSocket.accept();
