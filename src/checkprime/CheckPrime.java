@@ -1,3 +1,4 @@
+package checkprime;
 
 public class CheckPrime {
 

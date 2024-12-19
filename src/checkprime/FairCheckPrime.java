@@ -1,3 +1,5 @@
+package checkprime;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
