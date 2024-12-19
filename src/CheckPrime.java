@@ -1,7 +1,7 @@
 
 public class CheckPrime {
 
-    public int maxInt = Integer.MAX_VALUE;
+    public int maxInt = 1000000;
     public int totalPrimeNumbers = 0;
 
     private boolean checkPrime(int x) {
