@@ -47,4 +47,45 @@ public class UnfairCheckPrime {
             latch.countDown();
         }
     }
+
+    public static void main(String[] args) {
+        long start = System.currentTimeMillis();
+        CountDownLatch latch = new CountDownLatch(CONCURRENCY);
+
+        int nstart = 3;
+        int batchSize = (int) (MAX_INT / (float) CONCURRENCY);
+
+        for (int i = 0; i < CONCURRENCY - 1; i++) {
+            Thread thread = new Thread(
+                    new BatchWorker(
+                            String.valueOf(i),
+                            latch,
+                            nstart,
+                            nstart + batchSize
+                    )
+            );
+            thread.start();
+            nstart += batchSize;
+        }
+
+        Thread lastThread = new Thread(
+                new BatchWorker(
+                        String.valueOf(CONCURRENCY - 1),
+                        latch,
+                        nstart,
+                        MAX_INT
+                )
+        );
+        lastThread.start();
+
+        try {
+            latch.await(); 
+            long duration = System.currentTimeMillis() - start;
+            System.out.printf("checking till %d found %d prime numbers. took %d ms%n",
+                    MAX_INT, totalPrimeNumbers.get() + 1, duration);
+        } catch (InterruptedException e) {
+            System.err.println("Calculation interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt();
+        }
+    }
 }
