@@ -53,7 +53,7 @@ public class ConcurrentQueue {
     public static void main(String[] args) throws InterruptedException {
         Queue queue = new Queue();
         CountDownLatch enqueueSignal = new CountDownLatch(NUM_THREADS);
-        CountDownLatch dequeueSignal = new CountDownLatch(NUM_THREADS);
+        // CountDownLatch dequeueSignal = new CountDownLatch(NUM_THREADS);
         Random random = new Random();
 
         for (int i = 0; i < NUM_THREADS; i++) {
@@ -63,15 +63,15 @@ public class ConcurrentQueue {
             }).start();
         }
 
-        for (int i = 0; i < NUM_THREADS; i++) {
-            new Thread(() -> {
-                queue.dequeue();
-                dequeueSignal.countDown();
-            }).start();
-        }
+        // for (int i = 0; i < NUM_THREADS; i++) {
+        //     new Thread(() -> {
+        //         queue.dequeue();
+        //         dequeueSignal.countDown();
+        //     }).start();
+        // }
 
         enqueueSignal.await();
-        dequeueSignal.await();
+        // dequeueSignal.await();
 
         System.out.println("size: " + queue.size());
     }
