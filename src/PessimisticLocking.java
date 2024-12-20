@@ -22,9 +22,19 @@ public class PessimisticLocking {
         latch.countDown();
     }
 
-    private static void intCountAtomic(CountDownLatch latch){
+    private static void intCountAtomic(CountDownLatch latch) {
         atomicCOunt.incrementAndGet();
         latch.countDown();
+    }
+
+    private static void countAtomic() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(NUM_THREADS);
+        for (int i = 0; i < NUM_THREADS; i++) {
+            Thread thread = new Thread(() -> intCountAtomic(latch));
+            thread.start();
+        }
+
+        latch.await();
     }
 
     public static void main(String[] args) {
