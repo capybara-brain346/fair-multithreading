@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class PessimisticLocking {
 
-    private static final int NUM_THREADS = 1000000;
+    private static final int NUM_THREADS = 1000;
     private static int count = 0;
     private static final ReentrantLock lock = new ReentrantLock();
     private static AtomicInteger atomicCount = new AtomicInteger(0);
